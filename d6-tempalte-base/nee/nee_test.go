@@ -2,6 +2,7 @@ package nee
 
 import (
 	"fmt"
+	"net/http"
 	"net/http/httptest"
 	"reflect"
 	"testing"
@@ -57,4 +58,9 @@ func TestGetRoute(t *testing.T) {
 
 	fmt.Println(r.getRoutes("GET"))
 	fmt.Printf("match path: %s,params['name']: %s\n", n.pattern, ps["name"])
+}
+
+func TestUrl(t *testing.T) {
+	prefix := http.StripPrefix("/url/go/test", http.FileServer(http.Dir("/Users/netlops")))
+	fmt.Println(prefix)
 }
